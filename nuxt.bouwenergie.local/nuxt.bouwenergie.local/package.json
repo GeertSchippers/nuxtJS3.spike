@@ -19,6 +19,7 @@
     "vuetify": "^3.2.4"
   },
   "dependencies": {
+    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@mdi/font": "^7.0.96",
     "@pinia/nuxt": "^0.4.10",
     "pinia": "^2.0.36"

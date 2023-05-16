@@ -1,0 +1,6 @@
+{
+    "hello": "Hello, {name}!",
+    "bye" : "Bye, {name}",
+    "language": "Language"
+  }
+  

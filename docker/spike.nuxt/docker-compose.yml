@@ -1,0 +1,49 @@
+
+version: "3.8"
+services:
+  nuxt.bouwenergie.local:
+   container_name: nuxt.bouwenergie.local
+   build: nuxt.bouwenergie.local
+   ports:
+      - "3000:3000"
+      - "24678:24678"
+   environment:
+      - APP_ENV=local
+      - APP_HOST=nuxt.bouwenergie.local
+   volumes:
+      - type: bind
+        source: ../../nuxt.bouwenergie.local
+        target: /var/www    
+  nuxt.phpfpm.bouwenergie.local:
+    container_name: phpfpm.bouwenergie.local
+    build: phpfpm.bouwenergie.local
+    depends_on:
+      - nuxt.db.bouwenergie.local
+    ports:
+      - "9000:9000"
+      - "9515:9515"
+            # Add port for Xdebug
+      - "9003:9003"
+    environment:
+      - APP_ENV=local
+      - APP_HOST=phpfpm.bouwenergie.local
+      - XDEBUG_MODE=debug
+      - XDEBUG_CONFIG=client_host=host.docker.internal client_port=9003
+    volumes:
+      - type: bind
+        source: ../../platform.bouwenergie.local
+        target: /var/www
+  nuxt.db.bouwenergie.local:
+    container_name: nuxt.db.bouwenergie.local
+    build: nuxt.db.bouwenergie.local
+    ports:
+      - "3306:3306"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - APP_ENV=local
+      - APP_HOST=nuxt.db.bouwenergie.local
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - type: bind
+        source: ./nuxt.db.bouwenergie.local/mysqld.cnf
+        target: /etc/mysql/mysql.conf.d/mysqld.cnf

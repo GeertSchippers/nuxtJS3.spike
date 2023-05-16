@@ -1,0 +1,13 @@
+#!/bin/sh
+
+set -e
+
+while [ true ]
+
+    do
+
+      cd /var/www && php artisan schedule:work --verbose --no-interaction
+
+      sleep 5
+
+    done

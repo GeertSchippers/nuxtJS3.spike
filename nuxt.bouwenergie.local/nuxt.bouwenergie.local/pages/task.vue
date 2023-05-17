@@ -26,6 +26,8 @@
                 :label="`Only show favorites`"
             ></v-switch>
 
+            <!-- loading -->
+            <div class="loading" v-if="taskStore.loading">Loading tasks...</div>
 
             <!-- task lists -->
 
@@ -53,6 +55,8 @@
         setup() {
             const taskStore = useTaskStore()
 
+            taskStore.getTasks()
+
             const filter = ref('all')
 
             return {taskStore, filter}
@@ -64,6 +68,16 @@
 button {
     margin-right: 0.5rem;
     margin-bottom: 0.5rem;
+}
+/* loading state */
+.loading {
+  max-width: 640px;
+  border: 1px solid #ffd859;
+  background: #ffe9a0;
+  color: #3a3a3a;
+  padding: 5px 0;
+  text-align: center;
+  margin: 30px auto;
 }
 </style>
   

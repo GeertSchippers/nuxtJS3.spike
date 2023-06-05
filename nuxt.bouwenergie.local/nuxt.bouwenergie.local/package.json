@@ -22,6 +22,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.3",
     "@mdi/font": "^7.0.96",
     "@pinia/nuxt": "^0.4.10",
+    "nitropack": "^2.4.1",
     "pinia": "^2.0.36"
   }
 }

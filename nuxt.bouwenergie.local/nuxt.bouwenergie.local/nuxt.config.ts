@@ -90,7 +90,14 @@ export default defineNuxtConfig({
       __VUE_I18N_LEGACY_API__: false,
       __INTLIFY_PROD_DEVTOOLS__: false,
     },
+  },
+  nitro: {
+    devProxy: {
+      '/bouwenergie/': {
+        target: 'https://platform.bouwenergie.local/',
+        changeOrigin: true,
+      }
+    }
   }
-
 })
 

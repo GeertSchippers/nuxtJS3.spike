@@ -32,7 +32,7 @@ export default defineNuxtConfig({
     server: {
       hmr: {
         protocol: 'ws'
-      }
+      },
     }
   },
   googleFonts: {
@@ -91,13 +91,20 @@ export default defineNuxtConfig({
       __INTLIFY_PROD_DEVTOOLS__: false,
     },
   },
-  nitro: {
-    devProxy: {
-      '/bouwenergie/': {
-        target: 'https://platform.bouwenergie.local/',
-        changeOrigin: true,
+    routeRules: {
+      "bouwenergie/**": {
+        proxy: {
+        to: "https://platform.bouwenergie.local/",
+        }
+      },
+    },
+    nitro: {
+      devProxy: {
+        'testproxy': {
+          target: 'https://platform.bouwenergie.local/',
+          changeOrigin: true,
+        }
       }
     }
-  }
 })
 
